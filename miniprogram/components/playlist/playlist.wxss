@@ -27,7 +27,7 @@
   padding: 2px 0 0 6px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2; /* 设置一个number数值，当前文本超出数值行，就会以点点点的形式出现 */
   overflow: hidden;
   text-overflow: ellipsis;
 }
