@@ -1,2 +1,14 @@
-<!--pages/playlist/playlist.wxml-->
-<text>pages/playlist/playlist.wxml</text>
+<swiper class="playlist-container" indicator-dots="true" autoplay="true" interval="2000">
+  <block wx:for="{{bannerList}}" wx:key="url">
+    <swiper-item>
+      <!-- mode的值有三种：scaleToFill 、 aspectFit、widthFix -->
+      <image src="{{item.url}}" mode="widthFix" class="image"></image>
+    </swiper-item>
+  </block>
+</swiper>
+
+<view class="playlist-container">
+  <block wx:for="{{playlist}}" wx:key="_id">
+    <x-playlist playlist="{{item}}"></x-playlist>
+  </block>
+</view>
