@@ -1,5 +1,5 @@
 <view class="play-item">
   <image src="{{playlist.picUrl}}" class="pic"></image>
-  <text class="play-count">{{playlist.playCount}}</text>
+  <text class="play-count">{{_count}}</text>
   <view class="play-name">{{playlist.name}}</view>
 </view>

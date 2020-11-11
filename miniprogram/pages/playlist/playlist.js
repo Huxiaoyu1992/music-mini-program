@@ -26,8 +26,8 @@ Page({
       {
         _id: '002',
         picUrl: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
-        playCount: 245678,
-        name: '张三的歌'
+        playCount: 2322222222444,
+        name: '天亮了，北方的冬天开始下雪，你听寂寞在唱歌'
       },
       {
         _id: '003',
