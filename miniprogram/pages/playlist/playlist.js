@@ -34,6 +34,24 @@ Page({
         picUrl: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
         playCount: 245678,
         name: '自由飞翔'
+      },
+      {
+        _id: '004',
+        picUrl: 'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
+        playCount: 222343,
+        name: '光棍'
+      },
+      {
+        _id: '005',
+        picUrl: 'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
+        playCount: 2322222444,
+        name: '天亮了，北方的冬天开始下雪，你听寂寞在唱歌'
+      },
+      {
+        _id: '006',
+        picUrl: 'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
+        playCount: 245678,
+        name: '山丹丹那个开花'
       }
     ]
   },

@@ -1,5 +1,5 @@
 <swiper class="playlist-container" indicator-dots="true" autoplay="true" interval="2000">
-  <block wx:for="{{bannerList}}" wx:key="url">
+  <block wx:for="{{bannerList}}" wx:for-index="idx" wx:key="*this">
     <swiper-item>
       <!-- mode的值有三种：scaleToFill 、 aspectFit、widthFix -->
       <image src="{{item.url}}" mode="widthFix" class="image"></image>
