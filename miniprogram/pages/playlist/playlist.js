@@ -93,7 +93,7 @@ Page({
       this.setData({
         playlist: this.data.playlist.concat(list)
       })
-      this.stopPullDownRefresh()
+      wx.stopPullDownRefresh()
       wx.hideLoading()
     }).catch((err)=>{
       console.error(err)
