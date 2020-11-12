@@ -11,12 +11,33 @@ const rp = require('request-promise')
 const URL = 'http://www.xiecheng.live/personalized'
 // const URL = 'http://m.kugou.com/rank/list&json=true'
 const collection = db.collection('playlist')
-const MAX_LIMIT = 10
+// 从服务端云函数获取 一次只能获取100条数据，从小程序端获取 一次只能获取20条数据
+const MAX_LIMIT = 100
 
 // 云函数入口函数
 exports.main = async (event, context) => {
   // 获取数据库当中的数据
-  const list = await collection.get()
+  // const list = await collection.get() // 这样写 一次只能拿到100条数据
+  const totalCountResult = await collection.count()
+  const total = totalCountResult.total
+  const times = Math.ceil(total / MAX_LIMIT)
+  const tasks = []
+  let list = {
+    data: []
+  }
+  for (let i = 0; i < times.length; i++) {
+    let promise = collection.skip(i * MAX_LIMIT).limit(MAX_LIMIT).get()
+    tasks.push(promise)
+  }
+  // 需要分批请求数据时
+  if (tasks.length > 0) {
+    list = (await Promise.all(tasks)).reduce((pre, cur) => {
+      return {
+        data: pre.data.concat(cur.data) // 字符串拼接
+      }
+    })
+  }
+
   // 获取云函数中请求的数据
   const playlist = await rp(URL).then(res => {
     console.log(res)
