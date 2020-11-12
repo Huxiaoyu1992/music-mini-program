@@ -24,22 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.showLoading({
-      title: '加载中'
-    })
-    wx.cloud.callFunction({
-      name: 'music',
-      data: {
-        start: this.data.playlist.length,
-        count: Max_LIMIT
-      }
-    }).then(res => {
-      const list = res.result.data
-      this.setData({
-        playlist: list
-      })
-      wx.hideLoading()
-    })
+    this._getList()
   },
 
   /**
@@ -74,14 +59,17 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      playlist: []
+    })
+    this._getList()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this._getList()
   },
 
   /**
@@ -89,5 +77,29 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  _getList: function() {
+    wx.showLoading({
+      title: '加载中'
+    })
+    wx.cloud.callFunction({
+      name: 'music',
+      data: {
+        start: this.data.playlist.length,
+        count: Max_LIMIT
+      }
+    }).then(res => {
+      const list = res.result.data
+      this.setData({
+        playlist: this.data.playlist.concat(list)
+      })
+      this.stopPullDownRefresh()
+      wx.hideLoading()
+    }).catch((err)=>{
+      console.error(err)
+        wx.hideLoading({
+          success: (res) => {console.log("加载失败")},
+        })
+    })
   }
 })
