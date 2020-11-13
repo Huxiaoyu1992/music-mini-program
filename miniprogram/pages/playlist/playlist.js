@@ -86,7 +86,8 @@ Page({
       name: 'music',
       data: {
         start: this.data.playlist.length,
-        count: Max_LIMIT
+        count: Max_LIMIT,
+        $url: 'playlist'
       }
     }).then(res => {
       const list = res.result.data
