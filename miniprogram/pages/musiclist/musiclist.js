@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    musiclist: [],
+    listInfo: {}
   },
 
   /**
@@ -20,7 +21,12 @@ Page({
         $url: 'musiclist'
       }
     }).then(res => {
-      
+      this.setData({
+        musiclist: res.result.playlist.tracks,
+        listInfo: {
+          coverImgUrl: res.result.playlist.coverImgUrl
+        }
+      })
     })
   },
 
