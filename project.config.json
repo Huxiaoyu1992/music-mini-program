@@ -57,6 +57,13 @@
           "id": -1,
           "name": "db guide",
           "pathName": "pages/databaseGuide/databaseGuide"
+        },
+        {
+          "id": -1,
+          "name": "demo",
+          "pathName": "pages/demo/demo",
+          "query": "",
+          "scene": null
         }
       ]
     }

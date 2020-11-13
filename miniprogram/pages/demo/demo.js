@@ -65,16 +65,22 @@ Page({
   },
   getMusicInfo: function () {
     wx.cloud.callFunction({
-      name: 'tcbRouter'
+      name: 'tcbRouter',
+      data: {
+        $url: 'music' // 如果使用tcbRouter的方式 ，必须加上这个参数$url指向对应的router
+      }
     }).then(res => {
-
+      console.log(res)
     })
   },
   getMovieInfo: function() {
     wx.cloud.callFunction({
-      name: 'tcbRouter'
+      name: 'tcbRouter',
+      data: {
+        $url: 'movie' // 如果使用tcbRouter的方式 ，必须加上这个参数$url指向对应的router
+      }
     }).then(res => {
-      
+      console.log(res)
     })
   }
 })
