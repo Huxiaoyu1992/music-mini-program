@@ -46,6 +46,12 @@ Component({
         const result = parseInt(num / 100000000) + '.' + decimal + '亿'
         return result
       }
-    }
+    },
+    // 获取歌曲列表详情信息
+    getMusiclist: function () {
+      wx.navigateTo({
+        url: `../../pages/musiclist/musiclist?playlistId=${this.properties.playlist.id}`
+      })
+    } 
   }
 })
