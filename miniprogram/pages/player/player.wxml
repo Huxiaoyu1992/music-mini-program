@@ -3,15 +3,15 @@
 <view class="player-mask"></view>
 <!-- 唱片 -->
 <view class="player-info">
-  <view class="player-disc">
-    <image class="player-img" src="{{picUrl}}"></image>
+  <view class="player-disc {{isPlaying ? 'play' : ''}}">
+    <image class="player-img rotation" src="{{picUrl}}"></image>
   </view>
 </view>
 
 <!-- 控制面板 -->
 <view class="player-control">
   <text class="iconfont icon-shangyishoushangyige"></text>
-  <text class="iconfont icon-arrow-"></text>
+  <text class="iconfont {{ isPlaying ? 'icon-zanting_huaban' : 'icon-arrow-'}}" bind:tap="togglePlaying"></text>
   <text class="iconfont icon-xiayigexiayishou"></text>
   <!-- <text class="iconfont icon-zanting_huaban"></text> -->
 </view>

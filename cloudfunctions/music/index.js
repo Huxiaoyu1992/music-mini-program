@@ -26,6 +26,14 @@ exports.main = async (event, context) => {
       return JSON.parse(res)
     })
   })
+
+  // 获取当前音乐播放地址
+  app.router('musicUrl', async (ctx, next) => {
+    ctx.body = await rp(`${BASE_URL}/song/url?id=${parseInt(event.musicId)}`)
+    .then(res => {
+      return JSON.parse(res)
+    })
+  })
   return app.serve()
-  
+
 }
