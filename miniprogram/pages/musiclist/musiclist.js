@@ -25,7 +25,6 @@ Page({
       }
     }).then(res => {
       const result = res.result.playlist
-      console.log(result.tracks)
       this.setData({
         musiclist: result.tracks,
         listInfo: {
@@ -36,10 +35,15 @@ Page({
           desc: result.desc
         }
       })
+      this._setMusiclist()
       wx.hideLoading()
     })
   },
 
+  _setMusiclist () {
+    // 同步存储： setStorageSync, 异步存储: setStorage
+    wx.setStorageSync('musiclist', this.data.musiclist)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

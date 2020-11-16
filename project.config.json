@@ -62,18 +62,6 @@
           "pathName": "pages/demo/demo",
           "query": "",
           "scene": null
-        },
-        {
-          "name": "歌单列表",
-          "pathName": "pages/musiclist/musiclist",
-          "query": "playlistId= 2981177242",
-          "scene": null
-        },
-        {
-          "name": "pages/player/player",
-          "pathName": "pages/player/player",
-          "query": "id= 1459436775",
-          "scene": null
         }
       ]
     }

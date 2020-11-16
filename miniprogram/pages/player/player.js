@@ -1,20 +1,32 @@
-// pages/player/player.js
+// 在界面上不展示 ，只作为计算的数据，不放在data里。
+let list = []
+// 正在播放的歌曲的index
+let nowPlayingIdx = 0
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    picUrl: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    list = wx.getStorageSync('musiclist')
+    nowPlayingIdx = options.index
+    this._loadMusicDetail(list[nowPlayingIdx])
   },
-
+  _loadMusicDetail(music) {
+    wx.setNavigationBarTitle({
+      title: music.name || '胡晓宇的音乐博客',
+    })
+    this.setData({
+      picUrl: music.al.picUrl
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
