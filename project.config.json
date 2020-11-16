@@ -39,16 +39,13 @@
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
     "game": {
+      "list": []
+    },
+    "gamePlugin": {
       "list": []
     },
     "miniprogram": {
@@ -56,13 +53,26 @@
         {
           "id": -1,
           "name": "db guide",
-          "pathName": "pages/databaseGuide/databaseGuide"
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": ""
         },
         {
           "id": -1,
           "name": "demo",
           "pathName": "pages/demo/demo",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "歌单列表",
+          "pathName": "pages/musiclist/musiclist",
+          "query": "playlistId= 2981177242",
+          "scene": null
+        },
+        {
+          "name": "pages/player/player",
+          "pathName": "pages/player/player",
+          "query": "id= 1459436775",
           "scene": null
         }
       ]

@@ -27,5 +27,9 @@
   text-overflow: ellipsis;
 }
 
+.playing .musiclist-index, .playing .musiclist-info, .playing .musiclist-info .musiclist-name {
+  color: #d4237a;
+}
+
 
 

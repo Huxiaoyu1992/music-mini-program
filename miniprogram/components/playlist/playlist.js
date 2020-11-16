@@ -49,6 +49,7 @@ Component({
     },
     // 获取歌曲列表详情信息
     getMusiclist: function () {
+      console.log(this.properties.playlist.id)
       wx.navigateTo({
         url: `../../pages/musiclist/musiclist?playlistId=${this.properties.playlist.id}`
       })
