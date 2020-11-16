@@ -1,9 +1,18 @@
 <!--pages/player/player.wxml-->
 <view class="player-container" style="background: url({{picUrl}}) center/cover no-repeat"></view>
 <view class="player-mask"></view>
+<!-- 唱片 -->
 <view class="player-info">
   <view class="player-disc">
     <image class="player-img" src="{{picUrl}}"></image>
   </view>
+</view>
+
+<!-- 控制面板 -->
+<view class="player-control">
+  <text class="iconfont icon-shangyishoushangyige"></text>
+  <text class="iconfont icon-arrow-"></text>
+  <text class="iconfont icon-xiayigexiayishou"></text>
+  <!-- <text class="iconfont icon-zanting_huaban"></text> -->
 </view>
 

@@ -59,5 +59,26 @@
   top: 50%;
   margin-left: -184rpx;
   margin-top: -184rpx;
-  
+}
+
+.player-control {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.player-control .iconfont {
+  color: #fefefe;
+}
+
+.icon-shangyishoushangyige, .icon-xiayigexiayishou {
+  font-size: 80rpx;
+}
+
+.icon-arrow- {
+  font-size: 120rpx;
+  margin: 0 50rpx;
 }
