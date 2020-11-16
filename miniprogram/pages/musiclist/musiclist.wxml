@@ -1,2 +1,12 @@
 <!--pages/musiclist/musiclist.wxml-->
-<text>pages/musiclist/musiclist.wxml</text>
+<view class="music-container" style='background: url({{listInfo.coverImgUrl}}) no-repeat top/cover'></view>
+<view class="music-mask"></view>
+<view class="music-info">
+  <image src="{{listInfo.coverImgUrl}}" class="cover-img"></image>
+  <view class="music-list">
+    <view class="title">{{listInfo.name}}</view>
+    <view class="tags">{{listInfo.tags}}</view>
+  </view>
+</view>
+<!-- 音乐歌单列表 -->
+<x-musiclist tracks="{{musiclist}}"></x-musiclist>

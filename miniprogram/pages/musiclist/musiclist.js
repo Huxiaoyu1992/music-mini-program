@@ -21,10 +21,16 @@ Page({
         $url: 'musiclist'
       }
     }).then(res => {
+      const result = res.result.playlist
+      console.log(result.tracks)
       this.setData({
-        musiclist: res.result.playlist.tracks,
+        musiclist: result.tracks,
         listInfo: {
-          coverImgUrl: res.result.playlist.coverImgUrl
+          coverImgUrl: result.coverImgUrl,
+          name: result.name,
+          title: result.title,
+          tags: result.tags,
+          desc: result.desc
         }
       })
     })
