@@ -7,9 +7,16 @@ Component({
     isLyricShow: {
       type: Boolean,
       value: false
-    }
+    },
+    lyric: String
   },
 
+  observers: {
+    lyric(lrc) {
+      console.log(lrc)
+    }
+  },
+  
   /**
    * 组件的初始数据
    */

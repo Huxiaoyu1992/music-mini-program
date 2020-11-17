@@ -8,7 +8,7 @@
     <image class="player-img rotation {{isPlaying ? '' : 'rotation-pause'}}" src="{{picUrl}}"></image>
   </view>
   <!-- 歌词 -->
-  <x-lyric isLyricShow="{{!isLyricShow}}" bind:tap="toggleLyricShow"></x-lyric>
+  <x-lyric isLyricShow="{{!isLyricShow}}" bind:tap="toggleLyricShow" lyric="{{lyric}}"></x-lyric>
   <!-- 进度条 -->
   <view class="process-bar">
     <x-process-bar bind:musicEnd="onNext"></x-process-bar>

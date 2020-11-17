@@ -13,7 +13,8 @@ Page({
     picUrl: '',
     musiclist: Array,
     isPlaying: false, // 是否正在播放
-    isLyricShow: false
+    isLyricShow: false,
+    lyric: ''
   },
 
   /**
@@ -57,6 +58,23 @@ Page({
         isPlaying: true
       })
       wx.hideLoading()
+      // 请求歌词
+      wx.cloud.callFunction({
+        name: 'music',
+        data: {
+          $url: 'lyric',
+          id: musicId
+        }
+      }).then(res => {
+        let lyric = '暂无歌词'
+        const lrc = JSON.parse(res.result).lrc
+        if (lrc) {
+          lyric = lrc.lyric
+        }
+        this.setData({
+          lyric
+        })
+      })
     })
   },
   /**
