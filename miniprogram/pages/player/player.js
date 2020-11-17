@@ -11,6 +11,7 @@ Page({
    */
   data: {
     picUrl: '',
+    musiclist: Array,
     isPlaying: false // 是否正在播放
   },
 
@@ -19,10 +20,15 @@ Page({
    */
   onLoad: function (options) {
     list = wx.getStorageSync('musiclist')
+    this.setData({
+      musiclist: list
+    })
     nowPlayingIdx = options.index
     this._loadMusicDetail(list[nowPlayingIdx], options.id)
   },
   _loadMusicDetail(music, musicId) {
+    // 切换上下首歌的时候 需要把当前首歌给停掉
+    backgroundAudioManager.stop()
     wx.setNavigationBarTitle({
       title: music.name || '胡晓宇的音乐博客',
     })
@@ -52,53 +58,39 @@ Page({
       wx.hideLoading()
     })
   },
-  
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 切换播放状态
    */
-  onReady: function () {
-
+  togglePlaying() {
+    if (this.data.isPlaying) {
+      backgroundAudioManager.pause()
+    } else {
+      backgroundAudioManager.play()
+    }
+    this.setData({
+      isPlaying: !this.data.isPlaying
+    })
   },
-
   /**
-   * 生命周期函数--监听页面显示
+   * 切换到上一首
    */
-  onShow: function () {
-
+  onPrev() {
+    const musiclist = this.data.musiclist
+    nowPlayingIdx--
+    if (nowPlayingIdx < 0) {
+      nowPlayingIdx = musiclist.length - 1
+    }
+    this._loadMusicDetail(musiclist[nowPlayingIdx], musiclist[nowPlayingIdx].id)
   },
-
   /**
-   * 生命周期函数--监听页面隐藏
+   * 切换到下一首
    */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onNext() {
+    const musiclist = this.data.musiclist
+    nowPlayingIdx ++
+    if (nowPlayingIdx > musiclist.length - 1) {
+      nowPlayingIdx = 0
+    }
+    this._loadMusicDetail(musiclist[nowPlayingIdx], musiclist[nowPlayingIdx].id)
   }
 })

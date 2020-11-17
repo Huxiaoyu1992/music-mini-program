@@ -46,7 +46,7 @@
   top: -150rpx;
   left: 266rpx;
   background: url('https://s3.music.126.net/m/s/img/needle.png?702cf6d95f29e2e594f53a3caab50e12') no-repeat center/contain;
-  transform: rotate(-15reg);
+  transform: rotate(-15deg);
   transform-origin: 24rpx 10rpx;
   transition: transform .5s ease;
 }
@@ -93,6 +93,10 @@
   -moz-animation: rotation 12s linear infinite;
   -webkit-animation: rotation 12s linear infinite;
   -o-animation: rotation 12s linear infinite;
+}
+
+.rotation-pause {
+  animation-play-state: paused;
 }
 
 @keyframes rotation {
