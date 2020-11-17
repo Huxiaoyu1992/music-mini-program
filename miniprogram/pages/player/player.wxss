@@ -66,6 +66,16 @@
   margin-top: -184rpx;
 }
 
+
+/* 进度条 */
+.process-bar {
+  width: 90%;
+  position: absolute;
+  bottom: 24%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .player-control {
   position: absolute;
   left: 50%;
@@ -83,7 +93,7 @@
   font-size: 80rpx;
 }
 
-.icon-arrow-, .icon-zanting_huaban {
+.icon-bofang, .icon-zanting {
   font-size: 120rpx;
   margin: 0 50rpx;
 }

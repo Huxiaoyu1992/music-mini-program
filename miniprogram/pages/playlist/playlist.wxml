@@ -1,4 +1,4 @@
-<swiper class="playlist-container" indicator-dots="true" autoplay="true" interval="2000">
+<swiper indicator-dots="true" autoplay="true" interval="2000">
   <block wx:for="{{bannerList}}" wx:for-index="idx" wx:key="id">
     <swiper-item>
       <!-- mode的值有三种：scaleToFill 、 aspectFit、widthFix -->

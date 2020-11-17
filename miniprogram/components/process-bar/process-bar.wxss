@@ -1,0 +1,38 @@
+/* components/process-bar/process-bar.wxss */
+.process-container {
+  display: flex;
+  align-items: center;
+}
+
+.control {
+  position: relative;
+  flex: 1; /*flex 规定了弹性元素如何伸长或缩短以适应flex容器中的可用空间。这是一个简写属性，用来设置 flex-grow, flex-shrink 与 flex-basis。*/
+}
+
+.movable-area {
+  width: 100%;
+  height: 34rpx;
+  position: absolute;
+  bottom: -14rpx;
+  left: 0;
+}
+
+
+.movable-view {
+  width: 36rpx;
+  height: 36rpx;
+  background-color: #fefefe;
+  border-radius: 50%;
+}
+
+.time {
+  width: 64rpx;
+  padding: 0 20rpx;
+  font-family: NotoSansHans-regular;
+  /* font-weight: bold; */
+  color: #fff;
+  line-height: 30rpx;
+}
+.process {
+  width: 100%;
+}
