@@ -4,6 +4,7 @@ let movableViewWidth = 0
 const backgroundAudioManager = wx.getBackgroundAudioManager()
 let currentSec = -1
 let duration = 0 // 音乐总时长
+let isMoving = false // 在拖拽进度条的时候，onChange事件的赋值和backgroundAudioManager的onTimeUpdate会冲突，需要设置一个锁
 Component({
   /**
    * 组件的属性列表
@@ -42,6 +43,7 @@ Component({
         // 判断是拖动产生的
         this.data.percent = event.detail.x / (movableAreaWidth - movableViewWidth) * 100 
         this.data.movableDistance = event.detail.x
+        isMoving = true
       }
     },
     touchEnd() {
@@ -52,8 +54,8 @@ Component({
         ['showTime.currentTime']: `${timeObj.min}:${timeObj.second}`
       })
       // 把音乐播放进度设置成当前拖动条的位置
-
       backgroundAudioManager.seek(duration * this.data.percent / 100)
+      isMoving = false
     },
     /**
      * 获取元素的宽度
@@ -70,7 +72,7 @@ Component({
     },
     _bindBGMEvent() {
       backgroundAudioManager.onPlay(() => {
-        console.log('onPlay')
+        isMoving = false
       })
       backgroundAudioManager.onStop(() => {
         console.log('onStop')
@@ -94,25 +96,27 @@ Component({
           this.setData({
             ['showTime.totalTime']: `${this._setTime().min}:${this._setTime().second}`
           })
-        }        
+        }
       })
       // 监听音乐播放进度：只在前台执行
       backgroundAudioManager.onTimeUpdate(() => {
-        const ct = backgroundAudioManager.currentTime
-        duration = backgroundAudioManager.duration
-        // 一秒执行一次进度条的更新
-        if (ct.toString().split('.')[0] != currentSec) {
-          const ctFormat = this._dateFormatter(ct)
-          this.setData({
-            movableDistance: (movableAreaWidth - movableViewWidth) * ct / duration,
-            percent: ct / duration * 100,
-            ['showTime.currentTime']: `${ctFormat.min}:${ctFormat.second}`
-          })
-          currentSec = ct.toString().split('.')[0]
+        if (!isMoving) {
+          const ct = backgroundAudioManager.currentTime
+          duration = backgroundAudioManager.duration
+          // 一秒执行一次进度条的更新
+          if (ct.toString().split('.')[0] != currentSec) {
+            const ctFormat = this._dateFormatter(ct)
+            this.setData({
+              movableDistance: (movableAreaWidth - movableViewWidth) * ct / duration,
+              percent: ct / duration * 100,
+              ['showTime.currentTime']: `${ctFormat.min}:${ctFormat.second}`
+            })
+            currentSec = ct.toString().split('.')[0]
+          }
         }
       })
       backgroundAudioManager.onEnded(() => {
-        console.log('onEnded')
+        this.triggerEvent('musicEnd')
       })
 
       backgroundAudioManager.onError((res) => {
