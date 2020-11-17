@@ -3,6 +3,7 @@ let movableAreaWidth = 0
 let movableViewWidth = 0
 const backgroundAudioManager = wx.getBackgroundAudioManager()
 let currentSec = -1
+let duration = 0 // 音乐总时长
 Component({
   /**
    * 组件的属性列表
@@ -35,6 +36,25 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    onChange(event) {
+      // 只要在播放 就会触发change事件
+      if (event.detail.source === 'touch') {
+        // 判断是拖动产生的
+        this.data.percent = event.detail.x / (movableAreaWidth - movableViewWidth) * 100 
+        this.data.movableDistance = event.detail.x
+      }
+    },
+    touchEnd() {
+      const timeObj = this._dateFormatter(Math.floor(backgroundAudioManager.currentTime))
+      this.setData({
+        percent: this.data.percent,
+        movableDistance: this.data.movableDistance,
+        ['showTime.currentTime']: `${timeObj.min}:${timeObj.second}`
+      })
+      // 把音乐播放进度设置成当前拖动条的位置
+
+      backgroundAudioManager.seek(duration * this.data.percent / 100)
+    },
     /**
      * 获取元素的宽度
      */
@@ -79,16 +99,16 @@ Component({
       // 监听音乐播放进度：只在前台执行
       backgroundAudioManager.onTimeUpdate(() => {
         const ct = backgroundAudioManager.currentTime
-        const duration = backgroundAudioManager.duration
+        duration = backgroundAudioManager.duration
         // 一秒执行一次进度条的更新
-        if (ct.toString.split('.')[0] != currentSec) {
+        if (ct.toString().split('.')[0] != currentSec) {
           const ctFormat = this._dateFormatter(ct)
           this.setData({
             movableDistance: (movableAreaWidth - movableViewWidth) * ct / duration,
             percent: ct / duration * 100,
             ['showTime.currentTime']: `${ctFormat.min}:${ctFormat.second}`
           })
-          currentSec = ct.toString.split('.')[0]
+          currentSec = ct.toString().split('.')[0]
         }
       })
       backgroundAudioManager.onEnded(() => {
@@ -102,10 +122,11 @@ Component({
       })
     },
     _setTime() {
-      const duration = backgroundAudioManager.duration
+      duration = backgroundAudioManager.duration
       const dura = this._dateFormatter(duration)
       return dura
     },
+
     _dateFormatter(sec) {
       const min = Math.floor(sec / 60)
       const second = Math.floor(sec % 60)
