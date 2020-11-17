@@ -3,9 +3,12 @@
 <view class="player-mask"></view>
 <!-- 唱片 -->
 <view class="player-info">
-  <view class="player-disc {{isPlaying ? 'play' : ''}}">
+  <!-- 封面信息 -->
+  <view class="player-disc {{isPlaying ? 'play' : ''}}" bind:tap="toggleLyricShow" hidden="{{isLyricShow}}">
     <image class="player-img rotation {{isPlaying ? '' : 'rotation-pause'}}" src="{{picUrl}}"></image>
   </view>
+  <!-- 歌词 -->
+  <x-lyric isLyricShow="{{!isLyricShow}}" bind:tap="toggleLyricShow"></x-lyric>
   <!-- 进度条 -->
   <view class="process-bar">
     <x-process-bar bind:musicEnd="onNext"></x-process-bar>

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "x-process-bar": "/components/process-bar/process-bar"
+    "x-process-bar": "/components/process-bar/process-bar",
+    "x-lyric": "/components/lyric/lyric"
   }
 }

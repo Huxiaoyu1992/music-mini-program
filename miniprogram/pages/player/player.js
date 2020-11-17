@@ -12,7 +12,8 @@ Page({
   data: {
     picUrl: '',
     musiclist: Array,
-    isPlaying: false // 是否正在播放
+    isPlaying: false, // 是否正在播放
+    isLyricShow: false
   },
 
   /**
@@ -92,5 +93,13 @@ Page({
       nowPlayingIdx = 0
     }
     this._loadMusicDetail(musiclist[nowPlayingIdx], musiclist[nowPlayingIdx].id)
+  },
+  /**
+   * 切换歌词是否显示
+   */
+  toggleLyricShow() {
+    this.setData({
+      isLyricShow: !this.data.isLyricShow
+    })
   }
 })

@@ -1,0 +1,4 @@
+<!--components/lyric/lyric.wxml-->
+<scroll-view hidden="{{isLyricShow}}">
+  我爱记歌词
+</scroll-view>
