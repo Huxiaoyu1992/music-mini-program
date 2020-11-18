@@ -4,6 +4,7 @@ let list = []
 let nowPlayingIdx = 0
 // 获取全局唯一的一个音频播放管理器
 const backgroundAudioManager = wx.getBackgroundAudioManager()
+const app = getApp()
 Page({
 
   /**
@@ -34,6 +35,7 @@ Page({
     wx.setNavigationBarTitle({
       title: music.name || '胡晓宇的音乐博客',
     })
+    app.setPlayingMusicId(musicId)
     this.setData({
       picUrl: music.al.picUrl,
       isPlaying: false

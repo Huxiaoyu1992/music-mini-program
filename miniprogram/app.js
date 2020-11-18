@@ -14,6 +14,14 @@ App({
       })
     }
     // 全局属性或方法的配置
-    this.globalData = {}
-  }
+    this.globalData = {
+      playingMusicId: -1
+    }
+  },
+  setPlayingMusicId(id) {
+    this.globalData.playingMusicId = id
+  },
+  getPlayingMusicId() {
+    return this.globalData.playingMusicId
+  },
 })

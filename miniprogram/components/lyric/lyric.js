@@ -13,7 +13,15 @@ Component({
 
   observers: { // 用于监听组件内properties和data的变化
     lyric(lrc) {
-      this._parseLyric(lrc)
+      if (lrc == '暂无歌词' || lrc =='') {
+        this.setData({
+          lyricList: [{ lrc: '暂无歌词', time: 0 }],
+          curLyricLineIdx: -1
+        })
+      } else {
+        this._parseLyric(lrc)
+      }
+      
     }
   },
   
@@ -48,15 +56,22 @@ Component({
       let lrclist = this.data.lyricList
       if (!lrclist.length) {
         return
-      } else {
-        for (let i = 0; i < lrclist.length; i++) {
-          if (currentTime <= lrclist[i].time) {
-            this.setData({
-              curLyricLineIdx: i - 1,
-              scrollTop: (i - 1) * this.data.realW 
-            })
-            break
-          }
+      }
+      if (currentTime > lrclist[lrclist.length - 1].time) {
+        if (this.curLyricLineIdx != -1) {
+          this.setData({
+            curLyricLineIdx: -1,
+            scrollTop: lrclist.length * this.data.realW
+          })
+        }
+      }
+      for (let i = 0; i < lrclist.length; i++) {
+        if (currentTime <= lrclist[i].time) {
+          this.setData({
+            curLyricLineIdx: i - 1,
+            scrollTop: (i - 1) * this.data.realW 
+          })
+          break
         }
       }
     },
