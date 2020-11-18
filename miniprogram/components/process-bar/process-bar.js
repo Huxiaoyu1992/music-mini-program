@@ -75,7 +75,6 @@ Component({
 
       })
     },
-    
     _bindBGMEvent() {
       backgroundAudioManager.onPlay(() => {
         isMoving = false
