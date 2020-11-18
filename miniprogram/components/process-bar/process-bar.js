@@ -74,6 +74,7 @@ Component({
         movableViewWidth = rect[1].width
       })
     },
+    
     _bindBGMEvent() {
       backgroundAudioManager.onPlay(() => {
         isMoving = false
