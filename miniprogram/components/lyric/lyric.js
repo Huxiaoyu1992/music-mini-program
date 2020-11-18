@@ -21,13 +21,45 @@ Component({
    * 组件的初始数据
    */
   data: {
-    lyricList: []
+    lyricList: [],
+    curLyricLineIdx: 0, // 当前行歌词的索引
+    scrollTop: 0,
+    realW: 0
+  },
+
+  lifetimes: {
+    ready() {
+      // 在小程序里 所有设备的宽度都是750rpx
+      wx.getSystemInfo({
+        success: (result) => {
+          const width = result.screenWidth
+          const realW = (width / 750) * 64
+          this.setData({ realW })
+        },
+      })
+    }
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    updateTime(currentTime) {
+      let lrclist = this.data.lyricList
+      if (!lrclist.length) {
+        return
+      } else {
+        for (let i = 0; i < lrclist.length; i++) {
+          if (currentTime <= lrclist[i].time) {
+            this.setData({
+              curLyricLineIdx: i - 1,
+              scrollTop: (i - 1) * this.data.realW 
+            })
+            break
+          }
+        }
+      }
+    },
     /**
      * 解析歌词
      * @param {*} str 

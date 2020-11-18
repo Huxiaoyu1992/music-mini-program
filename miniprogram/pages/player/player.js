@@ -119,5 +119,13 @@ Page({
     this.setData({
       isLyricShow: !this.data.isLyricShow
     })
-  }
+  },
+  /**
+   * 播放一直更新时间，为了同步更新歌词，获取到当前时间，并传递到歌词组件内
+   * @param {*} currentTime 
+   */
+  timeUpdate(event) {
+    // 实现组件之间的传值
+    this.selectComponent('.lyric').updateTime(event.detail.currentTime)
+  },
 })

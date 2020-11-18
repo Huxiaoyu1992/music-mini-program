@@ -112,6 +112,10 @@ Component({
               ['showTime.currentTime']: `${ctFormat.min}:${ctFormat.second}`
             })
             currentSec = ct.toString().split('.')[0]
+            // 联动歌词
+            this.triggerEvent('timeUpdate', {
+              currentTime: ct
+            })
           }
         }
       })
