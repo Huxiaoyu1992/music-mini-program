@@ -72,7 +72,6 @@ Component({
       query.exec((rect) => {
         movableAreaWidth = rect[0].width
         movableViewWidth = rect[1].width
-
       })
     },
     _bindBGMEvent() {
