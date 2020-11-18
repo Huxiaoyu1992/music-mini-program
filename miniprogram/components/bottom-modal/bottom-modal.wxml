@@ -1,0 +1,6 @@
+<!--components/bottom-modal/bottom-modal.wxml-->
+<view class="modal" hidden="{{!modalShow}}">
+  <view class="panel">
+    <icon class='cancel' type='cancel' bindtap="cancel"></icon>
+  </view>
+</view>

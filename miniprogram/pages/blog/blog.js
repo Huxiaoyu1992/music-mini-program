@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    modalShow: false
   },
 
   /**
@@ -61,6 +61,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+
+  },
+  /**
+   * 发布按钮
+   */
+  publish() {
 
   }
 })

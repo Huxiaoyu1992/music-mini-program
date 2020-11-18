@@ -12,7 +12,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#d4237a",
-    "navigationBarTitleText": "胡晓宇的音乐博客",
+    "navigationBarTitleText": "音乐",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
@@ -26,7 +26,7 @@
       },
       {
         "pagePath": "pages/blog/blog",
-        "text": "发布",
+        "text": "发现",
         "iconPath": "images/blog.png",
         "selectedIconPath": "images/blog_select.png"
       },
