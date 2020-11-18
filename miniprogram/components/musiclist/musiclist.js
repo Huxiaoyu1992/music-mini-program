@@ -20,7 +20,7 @@ Component({
   pageLifetimes: {
     show () {
       this.setData({
-        currentId: app.getPlayingMusicId()
+        currentId: parseInt(app.getPlayingMusicId())
       })
     }
   },

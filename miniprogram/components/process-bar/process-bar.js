@@ -10,7 +10,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    isSame: Boolean
   },
 
   /**
@@ -27,6 +27,10 @@ Component({
 
   lifetimes: {
     ready () {
+      if (this.properties.isSame && this.data.showTime.totalTime == '00:00') {
+        // 重新设置总时长
+        this._setTime()
+      }
       // 组件布局完成之后
       this._getMovableDistance()
       this._bindBGMEvent()
@@ -73,12 +77,13 @@ Component({
     _bindBGMEvent() {
       backgroundAudioManager.onPlay(() => {
         isMoving = false
+        this.triggerEvent('onPlay')
       })
       backgroundAudioManager.onStop(() => {
         console.log('onStop')
       })
       backgroundAudioManager.onPause(() => {
-        console.log('onPause')
+        this.triggerEvent('onPause')
       })
       // 音频加载中
       backgroundAudioManager.onWaiting(() => {
@@ -88,14 +93,10 @@ Component({
       backgroundAudioManager.onCanplay(() => {
         if (backgroundAudioManager.duration === undefined) {
           setTimeout(() => {
-            this.setData({
-              ['showTime.totalTime']: `${this._setTime().min}:${this._setTime().second}`
-            })
+            this._setTime()
           }, 1000)
         } else {
-          this.setData({
-            ['showTime.totalTime']: `${this._setTime().min}:${this._setTime().second}`
-          })
+          this._setTime()
         }
       })
       // 监听音乐播放进度：只在前台执行
@@ -132,7 +133,9 @@ Component({
     _setTime() {
       duration = backgroundAudioManager.duration
       const dura = this._dateFormatter(duration)
-      return dura
+      this.setData({
+        ['showTime.totalTime']: `${dura.min}:${dura.second}`
+      })
     },
 
     _dateFormatter(sec) {

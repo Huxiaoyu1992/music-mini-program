@@ -15,7 +15,8 @@ Page({
     musiclist: Array,
     isPlaying: false, // 是否正在播放
     isLyricShow: false,
-    lyric: ''
+    lyric: '',
+    isSame: false
   },
 
   /**
@@ -30,8 +31,20 @@ Page({
     this._loadMusicDetail(list[nowPlayingIdx], options.id)
   },
   _loadMusicDetail(music, musicId) {
-    // 切换上下首歌的时候 需要把当前首歌给停掉
-    backgroundAudioManager.stop()
+    // 判断是否为同一首歌曲
+    if (musicId === app.getPlayingMusicId()) {
+      this.setData({
+        isSame: true
+      })
+    } else {
+      this.setData({
+        isSame: false
+      })
+    }
+     // 切换上下首歌 需要把当前首歌给停掉
+    if (!this.data.isSame) {
+      backgroundAudioManager.stop()
+    }
     wx.setNavigationBarTitle({
       title: music.name || '胡晓宇的音乐博客',
     })
@@ -51,11 +64,19 @@ Page({
       }
     }).then(res => {
       const result = res.result
-      backgroundAudioManager.src = result.data[0].url
-      backgroundAudioManager.title = music.name
-      backgroundAudioManager.coverImgUrl = music.al.picUrl
-      backgroundAudioManager.singer = music.ar[0].name
-      backgroundAudioManager.epname = music.al.name
+      if (result.data[0].url == null) {
+        wx.showToast({
+          title: '当前无权播放'
+        })
+        return
+      }
+      if (!this.data.same) {
+        backgroundAudioManager.src = result.data[0].url
+        backgroundAudioManager.title = music.name
+        backgroundAudioManager.coverImgUrl = music.al.picUrl
+        backgroundAudioManager.singer = music.ar[0].name
+        backgroundAudioManager.epname = music.al.name
+      }
       this.setData({
         isPlaying: true
       })
@@ -129,5 +150,15 @@ Page({
   timeUpdate(event) {
     // 实现组件之间的传值
     this.selectComponent('.lyric').updateTime(event.detail.currentTime)
+  },
+  onPlay() {
+    this.setData({
+      isPlaying: true
+    })
+  },
+  onPause() {
+    this.setData({
+      isPlaying: false
+    })
   },
 })

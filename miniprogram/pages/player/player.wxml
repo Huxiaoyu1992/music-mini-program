@@ -11,7 +11,7 @@
   <x-lyric isLyricShow="{{!isLyricShow}}" bind:tap="toggleLyricShow" lyric="{{lyric}}" class="lyric"></x-lyric>
   <!-- 进度条 -->
   <view class="process-bar">
-    <x-process-bar bind:musicEnd="onNext" bind:timeUpdate="timeUpdate"></x-process-bar>
+    <x-process-bar bind:musicEnd="onNext" bind:timeUpdate="timeUpdate" bind:onPlay="onPlay" bind:onPause="onPause" isSame="{{isSame}}"></x-process-bar>
   </view>
   <!-- 控制面板 -->
   <view class="player-control">
