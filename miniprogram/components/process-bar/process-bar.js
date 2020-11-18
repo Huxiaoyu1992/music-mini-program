@@ -5,6 +5,7 @@ const backgroundAudioManager = wx.getBackgroundAudioManager()
 let currentSec = -1
 let duration = 0 // 音乐总时长
 let isMoving = false // 在拖拽进度条的时候，onChange事件的赋值和backgroundAudioManager的onTimeUpdate会冲突，需要设置一个锁
+
 Component({
   /**
    * 组件的属性列表
