@@ -67,6 +67,41 @@ Page({
    * 发布按钮
    */
   publish() {
-
+    // 先判断是否授权过
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting["scope.userInfo"]) {
+          wx.getUserInfo({
+            success: result => {
+              this.loginSuccess({
+                detail: result.userInfo
+              })
+            }
+          })
+        } else {
+          this.setData({
+            modalShow: true
+          })
+        }
+      }
+    })
+  },
+  /**
+   * 授权成功
+   * @param {*} event 
+   */
+  loginSuccess(event) {
+    const userInfo = event.detail
+    wx.navigateTo({
+      url: `../blog-edit/blog-edit?nickName=${userInfo.nickName}&avatorUrl=${userInfo.avatorUrl}`
+    })
+  },
+  /**
+   * 授权失败
+   */
+  loginReject() {
+    wx.showModal({
+      title: '授权的用户才能发布博客'
+    })
   }
 })

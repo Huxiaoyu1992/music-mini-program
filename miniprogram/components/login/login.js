@@ -1,0 +1,34 @@
+// components/login/login.js
+Component({
+  /**
+   * 组件的属性列表
+   */
+  properties: {
+    modalShow: Boolean
+  },
+
+  /**
+   * 组件的初始数据
+   */
+  data: {
+
+  },
+
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    onGetUserinfo(event) {
+      const userinfo = event.detail.userInfo
+      // 当前用户允许授权
+      if (userinfo) {
+        this.setData({
+          modalShow: false
+        })
+        this.triggerEvent('loginSuccess', userinfo)
+      } else {
+        this.triggerEvent('loginReject')
+      }
+    }
+  }
+})

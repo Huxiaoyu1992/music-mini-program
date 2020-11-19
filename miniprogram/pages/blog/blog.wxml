@@ -10,5 +10,6 @@
     </view>
   </view>
   <!-- 底部模态框 -->
-  <x-bottom-modal modalShow="{{modalShow}}"></x-bottom-modal>
+  <x-login modalShow="{{modalShow}}" bind:loginSuccess="loginSuccess" bind:loginReject="loginReject">
+  </x-login>
 </view>

@@ -1,0 +1,16 @@
+/* components/login/login.wxss */
+.login-container {
+  width: 100%;
+}
+
+.login-container .login {
+  font-size: 32rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  vertical-align: middle;
+  background-color: #d4237a;
+  color: #fff;
+  margin: 110rpx 0;
+  padding: 0 70rpx;
+  font-weight: normal;
+}

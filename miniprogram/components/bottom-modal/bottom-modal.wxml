@@ -1,6 +1,8 @@
 <!--components/bottom-modal/bottom-modal.wxml-->
 <view class="modal" hidden="{{!modalShow}}">
   <view class="panel">
-    <icon class='cancel' type='cancel' bindtap="cancel"></icon>
+    <icon class='cancel' type='cancel' bindtap="closeModal"></icon>
+    <!-- slot插槽 -->
+    <slot name="modal-content"></slot>
   </view>
 </view>
