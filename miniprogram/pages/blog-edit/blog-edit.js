@@ -1,6 +1,10 @@
 // pages/blog-edit/blog-edit.js
 const IMG_LIMIT = 9
 const MAX_IPT_NUM = 200
+// 数据库初始化
+const db = wx.cloud.database()
+let content = ''
+let userinfo = {}
 Page({
 
   /**
@@ -10,7 +14,7 @@ Page({
     num: 0,
     footerBottom: 0,
     imgs: [],
-    selectphoto: true
+    selectphoto: true,
   },
 
   /**
@@ -18,6 +22,7 @@ Page({
    */
   onLoad: function (options) {
     // console.log(options)
+    userinfo = options
   },
 
   /**
@@ -35,6 +40,7 @@ Page({
     this.setData({
       num: val
     })
+    content = event.detail.value
   },
 
   onfocus(event) {
@@ -76,6 +82,71 @@ Page({
         selectphoto: true
       })
     }
+  },
+  previewImg(event) {
+    // 这块的显示在IOS和Android上有不同的显示
+    const current = this.data.imgs[event.target.dataset.itemsrc]
+    wx.previewImage({
+      urls: this.data.imgs,
+      current
+    })
+  },
+  send() {
+    if (!content.trim()) {
+      wx.showModal({
+        title: '请输入内容'
+      })
+      return
+    }
+    wx.showLoading({
+      title: '发布中',
+    })
+    let promiselist = []
+    const fileids = []
+    this.data.imgs.forEach(item => {
+      let p = new Promise((resolve, reject) => {
+        // 获取文件扩展名
+        const suffix = /\.\w+$/.exec(item)[0]
+        // 云存储一次只能上传一个文件
+        wx.cloud.uploadFile({
+          cloudPath: 'blog/' + Date.now() + '-' + Math.random() * 1000000 + suffix,
+          filePath: item,
+          success: res => {
+            const fileId = res.fileID
+            fileids.push(fileId)
+            resolve()
+          },
+          fail: res => {
+            reject()
+          }
+        })
+      })
+      promiselist.push(promiselist)
+    })
+    // 云存储
+    Promise.all(promiselist).then(res => {
+      db.collection('blog').add({
+        data: {
+          content,
+          img: fileids,
+          ...userinfo,
+          createTime: db.serverDate()
+
+        }
+      }).then(res => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '发布成功'
+        })
+        // 返回发布列表页并刷新
+        wx.navigateBack()
+      }).catch(e => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '发布失败'
+        })
+      })
+    })
   },
   /**
    * 生命周期函数--监听页面显示
