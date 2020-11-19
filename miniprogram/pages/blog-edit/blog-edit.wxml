@@ -2,13 +2,18 @@
 <view class="container">
   <!-- 原生组件： 脱离webview 原生组件不能用bind:event -->
   <textarea class="content" placeholder="分享新鲜事..." bindinput="onInput" maxlength="200" auto-focus bindfocus="onfocus" bindblur="onblur"></textarea>
-  <!-- 显示图片 -->
-  <view class="imgs">
-
-  </view>
-  <!-- 选择图片 -->
-  <view class="chose-img">
-    <i class="iconfont icon-jiahao"></i>
+  <view class="image-list">
+    <!-- 显示图片 -->
+    <block wx:for="{{imgs}}" wx:key="*this">
+      <view class="image-wrap">
+        <image class="image" src="{{item}}" mode="aspectFill"></image>
+        <i class="iconfont icon-shanchu" bind:tap="onDel" data-index="{{index}}"></i>
+      </view>
+    </block>
+    <!-- 选择图片 -->
+    <view class="image-wrap selectphoto" hidden="{{!selectphoto}}"  bindtap="onChoseImg">
+      <i class="iconfont icon-jiahao"></i>
+    </view>
   </view>
 </view>
 <view class="footer" style="bottom: {{footerBottom}}px">
