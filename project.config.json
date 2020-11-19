@@ -66,6 +66,13 @@
         {
           "name": "pages/blog/blog",
           "pathName": "pages/blog/blog",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/blog-edit/blog-edit",
+          "pathName": "pages/blog-edit/blog-edit",
+          "query": "nickName=胡晓宇&avatarUrl= https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIyVdJjQVSnsUicZq4yzbSdDLOriap6Qibsl8qjh2zWhK4XxNm8S3paBbW5fE5dKAdfBGpKkdPuHowVw/132",
           "scene": null
         }
       ]

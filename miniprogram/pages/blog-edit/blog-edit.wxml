@@ -1,2 +1,17 @@
 <!--pages/blog-edit/blog-edit.wxml-->
-<text>pages/blog-edit/blog-edit.wxml</text>
+<view class="container">
+  <!-- 原生组件： 脱离webview 原生组件不能用bind:event -->
+  <textarea class="content" placeholder="分享新鲜事..." bindinput="onInput" maxlength="200" auto-focus bindfocus="onfocus" bindblur="onblur"></textarea>
+  <!-- 显示图片 -->
+  <view class="imgs">
+
+  </view>
+  <!-- 选择图片 -->
+  <view class="chose-img">
+    <i class="iconfont icon-jiahao"></i>
+  </view>
+</view>
+<view class="footer" style="bottom: {{footerBottom}}px">
+  <text class="words-num">{{num}}</text>
+  <button class="send-btn" size="mini">发布</button>
+</view>

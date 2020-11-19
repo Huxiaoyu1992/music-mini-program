@@ -1,18 +1,20 @@
 // pages/blog-edit/blog-edit.js
+const MAX_IPT_NUM = 200
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    num: 0,
+    footerBottom: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options)
   },
 
   /**
@@ -22,6 +24,26 @@ Page({
 
   },
 
+  onInput(event) {
+    let val = event.detail.value.length
+    if(MAX_IPT_NUM < val.length) {
+      val = `最大字数为${MAX_IPT_NUM}`
+    }
+    this.setData({
+      num: val
+    })
+  },
+
+  onfocus(event) {
+    this.setData({
+      footerBottom: event.detail.height
+    })
+  },
+  onblur() {
+    this.setData({
+      footerBottom: 0
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

@@ -93,7 +93,7 @@ Page({
   loginSuccess(event) {
     const userInfo = event.detail
     wx.navigateTo({
-      url: `../blog-edit/blog-edit?nickName=${userInfo.nickName}&avatorUrl=${userInfo.avatorUrl}`
+      url: `../blog-edit/blog-edit?nickName=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}`
     })
   },
   /**
