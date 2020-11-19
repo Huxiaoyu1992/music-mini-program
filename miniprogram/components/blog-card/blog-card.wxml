@@ -1,0 +1,17 @@
+<!--components/blog-card/blog-card.wxml-->
+<view class="blog">
+  <!-- 评论者个人信息 -->
+  <view class="blog-title">
+    <image class="blog-portrait" src="{{blog.avatarUrl}}"></image>
+    <view class="blog-box">
+      <view> {{blog.nickName}}</view>
+      <view class="blog-time">{{blog.createTime}}</view>
+    </view>
+  </view>
+  <view class="blog-content">{{blog.content}}</view>
+  <view class="blog-img">
+    <block wx:for="{{blog.img}}" wx:key="index">
+      <image class="img" src="{{item}}" mode="aspectFill"></image>
+    </block>
+  </view>
+</view>

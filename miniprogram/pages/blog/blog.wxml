@@ -9,6 +9,14 @@
       <x-search iconfont="iconfont" icon-sousuo="icon-sousuo"/>
     </view>
   </view>
+  <!-- 中间的评论列表 -->
+  <view class="blog-list">
+    <block wx:for="{{list}}" wx:key="_id">
+      <view class="blog-panel">
+        <x-blog-card blog="{{item}}"></x-blog-card>
+      </view>
+    </block>
+  </view>
   <!-- 底部模态框 -->
   <x-login modalShow="{{modalShow}}" bind:loginSuccess="loginSuccess" bind:loginReject="loginReject">
   </x-login>

@@ -5,42 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    modalShow: false
+    modalShow: false,
+    list: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+    this._loadBloglist()
   },
 
   /**
@@ -102,6 +75,20 @@ Page({
   loginReject() {
     wx.showModal({
       title: '授权的用户才能发布博客'
+    })
+  },
+  _loadBloglist() {
+    wx.cloud.callFunction({
+      name: 'blog',
+      data: {
+        $url: 'list',
+        start: 0,
+        count: 10
+      }
+    }).then(res => {
+      this.setData({
+        list: this.data.list.concat(res.result)
+      })
     })
   }
 })
