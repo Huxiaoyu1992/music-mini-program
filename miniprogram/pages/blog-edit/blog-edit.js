@@ -102,7 +102,7 @@ Page({
       title: '发布中',
     })
     let promiselist = []
-    const fileids = []
+    let fileids = []
     this.data.imgs.forEach(item => {
       let p = new Promise((resolve, reject) => {
         // 获取文件扩展名
@@ -112,8 +112,8 @@ Page({
           cloudPath: 'blog/' + Date.now() + '-' + Math.random() * 1000000 + suffix,
           filePath: item,
           success: res => {
-            const fileId = res.fileID
-            fileids.push(fileId)
+            // fileIds = fileIds.concat(res.fileID)
+            fileids = fileids.concat(res.fileID)
             resolve()
           },
           fail: res => {
@@ -121,7 +121,7 @@ Page({
           }
         })
       })
-      promiselist.push(promiselist)
+      promiselist.push(p)
     })
     // 云存储
     Promise.all(promiselist).then(res => {
