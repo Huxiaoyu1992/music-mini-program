@@ -4,5 +4,6 @@
     "x-login": "/components/login/login",
     "x-blog-card": "/components/blog-card/blog-card"
   },
-  "navigationBarTitleText": "发布"
+  "navigationBarTitleText": "发布",
+  "enablePullDownRefresh": true
 }

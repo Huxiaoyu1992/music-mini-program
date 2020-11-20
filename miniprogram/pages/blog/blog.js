@@ -13,21 +13,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this._loadBloglist()
+    this._loadBloglist(0)
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.setData({
+      list: []
+    })
+    this._loadBloglist(0)
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this._loadBloglist(this.data.list.length)
   },
 
   /**
@@ -77,15 +80,19 @@ Page({
       title: '授权的用户才能发布博客'
     })
   },
-  _loadBloglist() {
+  _loadBloglist(start = 0) {
+    wx.showLoading({
+      title: '加载中',
+    })
     wx.cloud.callFunction({
       name: 'blog',
       data: {
         $url: 'list',
-        start: 0,
+        start: start,
         count: 10
       }
     }).then(res => {
+      wx.hideLoading()
       this.setData({
         list: this.data.list.concat(res.result)
       })
