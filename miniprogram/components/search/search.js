@@ -14,13 +14,23 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    value: ''
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-
+    onInput(event) {
+      const val = event.detail.value
+      if (val.trim()) {
+        this.setData({
+          value: val
+        })
+      }
+    },
+    search() {
+      this.triggerEvent('search', this.data.value)
+    }
   }
 })

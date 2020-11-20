@@ -6,7 +6,7 @@
       <i class="iconfont icon-pinglun"></i>
     </view>
     <view class="search-container">
-      <x-search iconfont="iconfont" icon-sousuo="icon-sousuo"/>
+      <x-search iconfont="iconfont" icon-sousuo="icon-sousuo" bind:search="search"/>
     </view>
   </view>
   <!-- 中间的评论列表 -->

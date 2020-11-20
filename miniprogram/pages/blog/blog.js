@@ -1,4 +1,5 @@
 // pages/blog/blog.js
+let keyword = ''
 Page({
 
   /**
@@ -87,8 +88,9 @@ Page({
     wx.cloud.callFunction({
       name: 'blog',
       data: {
+        keyword,
+        start,
         $url: 'list',
-        start: start,
         count: 10
       }
     }).then(res => {
@@ -103,5 +105,14 @@ Page({
     wx.navigateTo({
       url: `../blog-comment/blog-comment?id=${id}`,
     })
+  },
+  // 模糊搜索
+  search(option) {
+    const str = option.detail
+    this.setData({
+      list: []
+    })
+    keyword = str
+    this._loadBloglist(0)
   }
 })
