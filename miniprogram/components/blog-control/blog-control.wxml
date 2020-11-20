@@ -1,0 +1,18 @@
+<!--components/blog-control/blog-control.wxml-->
+<view class="ctrl">
+  <view class="ctrl-item" bindtap="onComment">
+    <i class="iconfont icon-pinglun icon"></i>
+    <text class="ctrl-text">评论</text>
+  </view>
+  <view class="ctrl-item share">
+    <i class="iconfont icon-fenxiang icon"></i>
+    <text class="ctrl-text">分享</text>
+  </view>
+</view>
+<x-auth modalShow="{{authShow}}" bind:loginSuccess="loginSuccess"></x-auth>
+<x-bottom-modal modalShow="{{commentShow}}">
+  <view slot="modal-content" class="comment-box">
+    <textarea name="content" class="comment-content" value="{{content}}" fixed placeholder="请输入评论..." maxlength="150"></textarea>
+    <button size="mini" class="send">发送</button>
+  </view>
+</x-bottom-modal>

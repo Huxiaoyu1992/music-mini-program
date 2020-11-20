@@ -23,7 +23,7 @@ exports.main = async (event, context) => {
         })
       }
     }
-    ctx.body = await collection.where(w).skip(event.start).limit(event.count).orderBy('creatTime', 'desc').get().then(res => {
+    ctx.body = await collection.where(w).skip(event.start).limit(event.count).orderBy('createTime', 'desc').get().then(res => {
       return res.data
     })
   })

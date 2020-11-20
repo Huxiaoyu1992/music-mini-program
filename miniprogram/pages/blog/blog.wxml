@@ -14,6 +14,7 @@
     <block wx:for="{{list}}" wx:key="_id">
       <view class="blog-panel">
         <x-blog-card blog="{{item}}" bindtap="goToDetail" data-id="{{item._id}}"></x-blog-card>
+        <x-blog-ctrl iconfont="iconfont" icon-pinglun="icon-pinglun1" icon-fenxiang="icon-fenxiang2"></x-blog-ctrl>
       </view>
     </block>
   </view>
