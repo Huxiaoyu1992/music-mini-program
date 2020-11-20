@@ -97,5 +97,11 @@ Page({
         list: this.data.list.concat(res.result)
       })
     })
+  },
+  goToDetail(event) {
+    const id = event.target.dataset.id
+    wx.navigateTo({
+      url: `../blog-comment/blog-comment?id=${id}`,
+    })
   }
 })

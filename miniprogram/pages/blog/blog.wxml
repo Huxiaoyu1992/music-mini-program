@@ -13,7 +13,7 @@
   <view class="blog-list">
     <block wx:for="{{list}}" wx:key="_id">
       <view class="blog-panel">
-        <x-blog-card blog="{{item}}"></x-blog-card>
+        <x-blog-card blog="{{item}}" bindtap="goToDetail" data-id="{{item._id}}"></x-blog-card>
       </view>
     </block>
   </view>

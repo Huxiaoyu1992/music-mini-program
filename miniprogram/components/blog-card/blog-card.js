@@ -29,10 +29,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    previewImg() {
+    previewImg(event) {
       const imgslist = this.properties.blog.img
       wx.previewImage({
-        urls: imgslist
+        urls: imgslist,
+        current: event.target.dataset
       })
     }
   }
