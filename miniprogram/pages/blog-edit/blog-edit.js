@@ -100,6 +100,7 @@ Page({
     }
     wx.showLoading({
       title: '发布中',
+      mask: true
     })
     let promiselist = []
     let fileids = []
@@ -140,6 +141,11 @@ Page({
         })
         // 返回发布列表页并刷新
         wx.navigateBack()
+        // 刷新父界面
+        const currentPage = getCurrentPages()
+        console.log(currentPage) // 返回的是两个值的数组
+        const prePage = currentPage[currentPage.length - 2]
+        prePage.onPullDownRefresh()
       }).catch(e => {
         wx.hideLoading()
         wx.showToast({
