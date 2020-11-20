@@ -12,7 +12,7 @@
 <x-auth modalShow="{{authShow}}" bind:loginSuccess="loginSuccess"></x-auth>
 <x-bottom-modal modalShow="{{commentShow}}">
   <view slot="modal-content" class="comment-box">
-    <textarea name="content" class="comment-content" value="{{content}}" fixed placeholder="请输入评论..." maxlength="150"></textarea>
-    <button size="mini" class="send">发送</button>
+    <textarea name="content" class="comment-content" value="{{content}}" fixed placeholder="请输入评论..." maxlength="150" bindinput="onInput"></textarea>
+    <button size="mini" class="send" bindtap="onSend">发送</button>
   </view>
 </x-bottom-modal>

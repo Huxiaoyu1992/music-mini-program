@@ -40,6 +40,7 @@
   color: #fff;
   font-size: 24rpx;
   position: absolute;
+  z-index: 3;
   padding: 10rpx 40rpx;
   right: 20rpx;
   bottom: 20rpx;
