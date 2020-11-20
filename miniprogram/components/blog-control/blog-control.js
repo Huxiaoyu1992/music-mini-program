@@ -61,14 +61,11 @@ Component({
       })
     },
     loginReject() {},
-    onInput(event) {
-     this.setData({
-       content: event.detail.value
-     })
-    },
-    onSend() {
+    onSend(event) {
+      let formId = event.detail.formId
+      let content = event.detail.value.content
       // 评论
-      if (!this.data.content) {
+      if (!content) {
         wx.showModal({
           title: '内容不能为空',
           content: ''
@@ -82,7 +79,7 @@ Component({
       })
       db.collection('blog-comment').add({
         data: {
-          content: this.data.content,
+          content,
           createTime: db.serverDate(),
           blogId: this.properties.blogId,
           avatarUrl: userInfo.avatarUrl,
@@ -96,6 +93,17 @@ Component({
         this.setData({
           commentShow: false,
           content: ''
+        })
+        // 云调用实现消息推送
+        wx.cloud.callFunction({
+          name: 'sendMessage',
+          data: {
+            content,
+            formId,
+            blogId: this.properties.blogId
+          }
+        }).then(res => {
+          console.log(res)
         })
       })
     }

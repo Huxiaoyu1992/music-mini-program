@@ -10,9 +10,10 @@
   </view>
 </view>
 <x-auth modalShow="{{authShow}}" bind:loginSuccess="loginSuccess"></x-auth>
-<x-bottom-modal modalShow="{{commentShow}}">
-  <view slot="modal-content" class="comment-box">
-    <textarea name="content" class="comment-content" value="{{content}}" fixed placeholder="请输入评论..." maxlength="150" bindinput="onInput"></textarea>
-    <button size="mini" class="send" bindtap="onSend">发送</button>
-  </view>
+<!-- report-submit="true": 只有设置这个值才能实现推送 -->
+<x-bottom-modal modalShow="{{commentShow}}" report-submit="true">
+  <form slot="modal-content" class="comment-box" bind:submit="onSend">
+    <textarea name="content" class="comment-content" value="{{content}}" fixed placeholder="请输入评论..." maxlength="150"></textarea>
+    <button size="mini" class="send" form-type="submit">发送</button>
+  </form>
 </x-bottom-modal>
