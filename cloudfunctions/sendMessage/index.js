@@ -5,19 +5,22 @@ cloud.init()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const { OPENID } = cloud.getWXContext()
-  const result = await cloud.openapi.templateMessage.send({
-    touser: OPENID,
+  // 消息推送
+  const wxContext = cloud.getWXContext()
+  await cloud.openapi.uniformMessage.send({
+    touser: wxContext.OPENID,
+    templateId: 'q5ECYzzvhBbE_kKikwidy52aJV-fM4g21w1Cp1A037g',
     page: `/pages/blog-comment/blog-comment?blogId=${event.blogId}`,
+    miniprogramState: 'developer',
     data: {
-      keyword1: '评论完成',
-      keyword2: {
+      phrase2: {
+        value: '评论完成'
+      },
+      thing3:{
         value: event.content
       }
     },
-    templateId: 'q5ECYzzvhBbE_kKikwidy52aJV-fM4g21w1Cp1A037g',
-    formId: event.formId
+    formId:event.formId
   })
-
-  return result
+  return 'success'
 }

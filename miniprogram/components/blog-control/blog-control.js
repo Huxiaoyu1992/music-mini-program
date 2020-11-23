@@ -94,17 +94,17 @@ Component({
           commentShow: false,
           content: ''
         })
-        // 云调用实现消息推送
-        wx.cloud.callFunction({
-          name: 'sendMessage',
-          data: {
-            content,
-            formId,
-            blogId: this.properties.blogId
-          }
-        }).then(res => {
-          console.log(res)
-        })
+        // 云调用实现消息推送 -- todo: 微信推送消息的方式已经修改，不再支持模板信息推送，需要用户触发了订阅才能向其推送信息
+        // wx.cloud.callFunction({
+        //   name: 'sendMessage',
+        //   data: {
+        //     content,
+        //     formId,
+        //     blogId: this.properties.blogId
+        //   }
+        // }).then(res => {
+        //   console.log(res)
+        // })
       })
     }
   }
