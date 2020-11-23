@@ -66,8 +66,12 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (event) {
+    const obj = this.data.blog
+    return {
+      title: obj.content,
+      path: `/pages/blog-comment/blog-comment?blogId=${obj._id}`
+    }
   },
   /**
    * 查询评论详情

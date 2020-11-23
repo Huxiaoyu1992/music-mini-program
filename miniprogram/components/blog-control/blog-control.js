@@ -7,7 +7,8 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    blogId: String
+    blogId: String,
+    blog: Object
   },
 
   externalClasses: [
@@ -21,6 +22,9 @@ Component({
     authShow: false,
     commentShow: false,
     content: ''
+  },
+  onShareAppMessage: function(event) {
+    console.log(event)
   },
 
   /**

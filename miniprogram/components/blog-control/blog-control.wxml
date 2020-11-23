@@ -5,8 +5,11 @@
     <text class="ctrl-text">评论</text>
   </view>
   <view class="ctrl-item share">
-    <i class="iconfont icon-fenxiang icon"></i>
-    <text class="ctrl-text">分享</text>
+    <!-- 分享只能放到button里 -->
+    <button open-type="share" size="mini" data-id="{{blogId}}" data-blog="{{blog}}" class="ctrl-btn" hover-class="button-hover">
+      <i class="iconfont icon-fenxiang icon"></i>
+      <text class="ctrl-text">分享</text>
+    </button>
   </view>
 </view>
 <x-auth modalShow="{{authShow}}" bind:loginSuccess="loginSuccess"></x-auth>

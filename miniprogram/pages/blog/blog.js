@@ -37,8 +37,12 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (event) {
+    const obj = event.target.dataset
+    return {
+      title: obj.content,
+      path: `/pages/blog-comment/blog-comment?blogId=${obj._id}`
+    }
   },
   /**
    * 发布按钮
