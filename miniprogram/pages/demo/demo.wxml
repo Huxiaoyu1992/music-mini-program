@@ -1,3 +1,7 @@
 <!--miniprogram/pages/demo/demo.wxml-->
 <button bind:tap="getMusicInfo">获取音乐信息</button>
 <button bind:tap="getMovieInfo">获取电影信息</button>
+<!-- 只在界面获取用户信息 -->
+<open-data type="userAvatarUrl"></open-data>
+<!-- 需要获取到openid -->
+<button bindtap="getOpenId">获取openid</button>

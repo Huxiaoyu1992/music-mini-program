@@ -12,7 +12,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 在已授权的情况下才能使用
+    wx.getUserInfo({
+      success: res => {
+        console.log(res)
+      }
+    })
   },
 
   /**
@@ -81,6 +86,22 @@ Page({
       }
     }).then(res => {
       console.log(res)
+    })
+  },
+  getOpenId() {
+    wx.login({
+      success: res => {
+        let appid = ''
+        let secret = ''
+        if (res.code) {
+          wx.request({
+            url: 'https://test.com/onLogin',
+            data: {
+              
+            }
+          })
+        }
+      }
     })
   }
 })

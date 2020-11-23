@@ -1,4 +1,4 @@
-// pages/profile/profile.js
+// pages/profile-bloghistory/profile-bloghistory.js
 Page({
 
   /**
@@ -56,5 +56,11 @@ Page({
   onReachBottom: function () {
 
   },
-  onTapQrCode() {}
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 })

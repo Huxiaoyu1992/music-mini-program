@@ -1,4 +1,4 @@
-// pages/profile/profile.js
+// pages/profile-playhistory/profile-playhistory.js
 Page({
 
   /**
@@ -56,5 +56,11 @@ Page({
   onReachBottom: function () {
 
   },
-  onTapQrCode() {}
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 })
