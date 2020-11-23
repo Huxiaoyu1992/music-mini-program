@@ -1,2 +1,2 @@
 <!--pages/profile-playhistory/profile-playhistory.wxml-->
-<text>pages/profile-playhistory/profile-playhistory.wxml</text>
+<x-musiclist tracks="{{history}}"></x-musiclist>

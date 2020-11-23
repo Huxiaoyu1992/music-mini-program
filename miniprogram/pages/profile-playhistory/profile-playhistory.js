@@ -5,21 +5,35 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    history: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const app = getApp()
+    const playHistory = wx.getStorageSync(app.globalData.openid)
+    if (playHistory.length == 0) {
+      wx.showModal({
+        title: '当前播放历史为空'
+      })
+    } else {
+      wx.setStorage({
+        data: playHistory,
+        key: 'musiclist'
+      })
+      this.setData({
+        history: playHistory
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    // console.log(wx.getStorageSync(app.globalData.openid))
   },
 
   /**

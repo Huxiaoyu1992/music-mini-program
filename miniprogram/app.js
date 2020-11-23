@@ -13,9 +13,13 @@ App({
         traceUser: true, // 云开发访问过小程序的用户是否都被记录下来
       })
     }
+
+    this.getOpenid()
+
     // 全局属性或方法的配置
     this.globalData = {
-      playingMusicId: -1
+      playingMusicId: -1,
+      openid: -1
     }
   },
   setPlayingMusicId(id) {
@@ -24,4 +28,15 @@ App({
   getPlayingMusicId() {
     return this.globalData.playingMusicId
   },
+  getOpenid() {
+    wx.cloud.callFunction({
+      name: 'login'
+    }).then(res => {
+      const openid = res.result.openid
+      this.globalData.openid = openid
+      if (wx.getStorageSync(openid) == '') {
+        wx.setStorageSync(openid, [])
+      }
+    })
+  }
 })
