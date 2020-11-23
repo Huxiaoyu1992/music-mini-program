@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "x-blog-card": "/components/blog-card/blog-card"
-  }
+    "x-blog-card": "/components/blog-card/blog-card",
+    "x-blog-ctrl": "/components/blog-control/blog-control"
+  },
+  "navigationBarTitleText": "正文"
 }
