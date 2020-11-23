@@ -7,6 +7,7 @@ Page({
    */
   data: {
     blog: {},
+    blogId: '',
     commentList: []
   },
 
@@ -14,8 +15,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const blogId = options.id
-    this._getDetail(blogId)
+    this.setData({
+      blogId: options.id
+    })
+    this._getDetail()
   },
 
   /**
@@ -70,7 +73,7 @@ Page({
    * 查询评论详情
    * @param {*} blogId 
    */
-  _getDetail(blogId) {
+  _getDetail() {
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -79,7 +82,7 @@ Page({
       name: 'blog',
       data: {
         $url: 'detail',
-        blogId
+        blogId: this.data.blogId
       }
     }).then(res => {
       wx.hideLoading()

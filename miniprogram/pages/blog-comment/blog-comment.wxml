@@ -23,5 +23,5 @@
   </view>
 </scroll-view>
 <view class="blog-ctrl">
-  <x-blog-ctrl blogId="{{blog._id}}" iconfont="iconfont" icon-pinglun="icon-pinglun1" icon-fenxiang="icon-fenxiang2"></x-blog-ctrl>
+  <x-blog-ctrl blogId="{{blog._id}}" iconfont="iconfont" icon-pinglun="icon-pinglun1" icon-fenxiang="icon-fenxiang2" bind:commentSuccess="_getDetail"></x-blog-ctrl>
 </view>
