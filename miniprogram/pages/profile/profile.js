@@ -5,7 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-
   },
 
   /**
@@ -56,5 +55,19 @@ Page({
   onReachBottom: function () {
 
   },
-  onTapQrCode() {}
+  onTapQrCode() {
+    wx.showLoading({
+      title: '生成中'
+    })
+    wx.cloud.callFunction({
+      name: 'getQrcode'
+    }).then(res => {
+      wx.hideLoading()
+      const url = res.result
+      wx.previewImage({
+        urls: [url],
+        current: url
+      })
+    })
+  }
 })
