@@ -69,5 +69,15 @@ exports.main = async (event, context) => {
     }
 
   })
+
+  const openid = cloud.getWXContext().OPENID
+  // 获取我的发现列表
+  app.router('getList', async (ctx, next) => {
+    ctx.body = await collection.where({
+      _openid: openid
+    }).skip(event.start).limit(event.count).orderBy('createTime', 'desc').get().then(res => {
+      return res.data
+    })
+  })
   return app.serve()
 }

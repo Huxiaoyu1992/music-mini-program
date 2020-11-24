@@ -1,1 +1,4 @@
 /* pages/profile-bloghistory/profile-bloghistory.wxss */
+.blog-item {
+  margin-bottom: 20rpx;
+}

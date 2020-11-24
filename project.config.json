@@ -84,6 +84,12 @@
         {
           "name": "pages/profile-playhistory/profile-playhistory",
           "pathName": "pages/profile-playhistory/profile-playhistory",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/profile-bloghistory/profile-bloghistory",
+          "pathName": "pages/profile-bloghistory/profile-bloghistory",
           "scene": null
         }
       ]
