@@ -90,6 +90,12 @@
         {
           "name": "pages/profile-bloghistory/profile-bloghistory",
           "pathName": "pages/profile-bloghistory/profile-bloghistory",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/playlist/playlist",
+          "pathName": "pages/playlist/playlist",
           "scene": null
         }
       ]

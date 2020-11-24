@@ -1,6 +1,8 @@
 //app.js-描述整体小程序
 App({
-  onLaunch: function () {
+  onLaunch: function (options) {
+    console.log(options, 'onLaunch') // scene: 1001
+    this.checkUpdate()
     if (!wx.cloud) { // 判断是否支持云开发和判断当前基础库版本，在详情-本地设置里可以找到
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -22,6 +24,13 @@ App({
       openid: -1
     }
   },
+  /**
+   * 生命周期函数: 从后台切到前台
+   */
+  onShow: function(options) {
+    console.log(options, 'onShow') // scene: 1001
+  },
+
   setPlayingMusicId(id) {
     this.globalData.playingMusicId = id
   },
@@ -38,5 +47,25 @@ App({
         wx.setStorageSync(openid, [])
       }
     })
-  }
+  },
+  checkUpdate() {
+    // 获取全局唯一版本
+    const updateManager = wx.getUpdateManager()
+    // 检测版本更新
+    updateManager.onCheckForUpdate((res) => {
+      if (res.hasUpdate) {
+        // 监听更新
+        updateManager.onUpdateReady(() => {
+          wx.showModal({
+            title: '更新提示',
+            content: '新版本已经准备好，是否重启应用',
+            success: () => {
+              updateManager.applyUpdate()
+            }
+          })
+        })
+      }
+    })
+  },
+  // 
 })
